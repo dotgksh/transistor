@@ -88,6 +88,10 @@ trait HasBitmaskScopes
      */
     private function combinedMaskValue(array $flags): int
     {
-        return array_sum(array_map(maskValue(...), $flags));
+        return array_reduce(
+            array_map(maskValue(...), $flags),
+            fn (int $carry, int $value): int => $carry | $value,
+            0
+        );
     }
 }
