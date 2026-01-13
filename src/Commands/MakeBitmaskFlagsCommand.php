@@ -65,7 +65,7 @@ final class MakeBitmaskFlagsCommand extends GeneratorCommand
         $this->collectFlags();
 
         if (empty($this->flags)) {
-            $this->components->error('At least one flag is required.');
+            $this->error('At least one flag is required.');
 
             return false;
         }
