@@ -33,9 +33,7 @@ jobs:
           coverage: none
 
       - name: Install dependencies
-        run: |
-          composer require "illuminate/contracts:${{ matrix.laravel }}" "illuminate/database:${{ matrix.laravel }}" "illuminate/support:${{ matrix.laravel }}" --no-interaction --no-update
-          composer install --prefer-dist --no-interaction --no-progress
+        run: composer update --prefer-dist --no-interaction --no-progress --with="illuminate/contracts:${{ matrix.laravel }}"
 
       - name: Check code style
         run: vendor/bin/pint --test
