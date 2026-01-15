@@ -7,9 +7,9 @@ namespace Gksh\Transistor\Commands;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Attribute\AsCommand;
-use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
-use function Laravel\Prompts\info;
 use function Laravel\Prompts\text;
 
 #[AsCommand(name: 'make:bitmask-flags')]
@@ -35,35 +35,22 @@ final class MakeBitmaskFlagsCommand extends GeneratorCommand
     }
 
     /**
-     * @return array<int, array<int, int|string>>
+     * @return array<string, array<int, string>>
      */
-    protected function getArguments(): array
+    protected function promptForMissingArgumentsUsing(): array
     {
         return [
-            ['name', InputArgument::OPTIONAL, 'The name of the enum'],
+            'name' => ['What should the enum be named?', 'E.g. Permission'],
         ];
     }
 
-    protected function getNameInput(): string
+    protected function interact(InputInterface $input, OutputInterface $output): void
     {
-        $name = $this->argument('name');
-
-        if (is_string($name) && $name !== '') {
-            return trim($name);
-        }
-
-        return text(
-            label: 'What should the enum be named?',
-            placeholder: 'e.g. Permission',
-            required: true,
-            validate: $this->validateEnumName(...),
-        );
+        $this->collectFlags();
     }
 
     public function handle(): ?bool
     {
-        $this->collectFlags();
-
         if (empty($this->flags)) {
             $this->error('At least one flag is required.');
 
@@ -75,7 +62,7 @@ final class MakeBitmaskFlagsCommand extends GeneratorCommand
 
     protected function collectFlags(): void
     {
-        info('Enter flag names (empty to finish):');
+        $this->info('Enter flag names (empty to finish):');
 
         for ($index = 1; ; $index++) {
             $flag = text(
@@ -92,12 +79,9 @@ final class MakeBitmaskFlagsCommand extends GeneratorCommand
         }
     }
 
-    /**
-     * @param  string  $stub
-     */
-    protected function replaceClass($stub, $name): string
+    protected function buildClass($name): string
     {
-        $stub = parent::replaceClass($stub, $name);
+        $stub = parent::buildClass($name);
 
         return str_replace('{{ cases }}', $this->buildCases(), $stub);
     }
@@ -111,15 +95,6 @@ final class MakeBitmaskFlagsCommand extends GeneratorCommand
         );
 
         return implode("\n", $cases);
-    }
-
-    private function validateEnumName(string $value): ?string
-    {
-        if (! preg_match('/^[A-Z][a-zA-Z0-9]*$/', $value)) {
-            return 'The enum name must be in PascalCase.';
-        }
-
-        return null;
     }
 
     private function validateFlagName(string $value): ?string

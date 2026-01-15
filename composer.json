@@ -40,6 +40,17 @@
             ]
         }
     },
+    "scripts": {
+        "lint": "pint --test",
+        "lint:fix": "pint",
+        "test": "pest",
+        "analyse": "phpstan",
+        "ci": [
+            "@lint",
+            "@analyse",
+            "@test"
+        ]
+    },
     "config": {
         "sort-packages": true,
         "allow-plugins": {

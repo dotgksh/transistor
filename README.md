@@ -1,3 +1,7 @@
+<p align="center">
+    <img src="https://banners.beyondco.de/gksh%2Ftransistor.png?theme=light&packageManager=composer+require&packageName=gksh%2Ftransistor&pattern=circuitBoard&style=style_1&description=Bitwise+affordances+in+Laravel&md=1&showWatermark=0&fontSize=100px&images=lightning-bolt&widths=100&heights=100" alt="Transistor banner">
+</p>
+
 # Transistor
 
 Laravel integration for [gksh/bitmask](https://github.com/gksh/bitmask) - providing Eloquent casting, query scopes, validation, Blade directives, and migration macros for working with bitmask flags.
@@ -97,7 +101,7 @@ php artisan bitmask:inspect Permission 13
 +--------+---------+-----------------+
 ```
 
-When a value is provided, active bits are highlighted in green.
+When a value is provided, active bits are highlighted in green. Heavily inspired by https://laracasts.com/series/lukes-larabits/episodes/18.
 
 ## Eloquent Cast
 
