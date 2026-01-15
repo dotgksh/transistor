@@ -78,9 +78,10 @@ final class InspectBitmaskCommand extends Command
         $reflection = new ReflectionEnum($enumClass);
 
         if ($reflection->isBacked()) {
+            /** @var \ReflectionNamedType $backingType */
             $backingType = $reflection->getBackingType();
 
-            if (! $backingType instanceof \ReflectionNamedType || $backingType->getName() !== 'int') {
+            if ($backingType->getName() !== 'int') {
                 $this->error('Only integer-backed enums are supported.');
 
                 return false;

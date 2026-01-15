@@ -10,3 +10,4 @@
 *.swo
 /.phpactor.json
 /.idea
+/.claude/settings.local.json
