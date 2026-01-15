@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Gksh\Transistor;
 
 use Gksh\Bitmask\Bitmask;
+use Gksh\Transistor\Commands\InspectBitmaskCommand;
 use Gksh\Transistor\Commands\MakeBitmaskFlagsCommand;
 use Gksh\Transistor\Rules\ValidBitmask;
 use Illuminate\Database\Schema\Blueprint;
@@ -31,6 +32,7 @@ final class TransistorServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
+                InspectBitmaskCommand::class,
                 MakeBitmaskFlagsCommand::class,
             ]);
         }
