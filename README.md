@@ -4,11 +4,11 @@
 
 # Transistor
 
-Laravel integration for [gksh/bitmask](https://github.com/gksh/bitmask) - providing Eloquent casting, query scopes, validation, Blade directives, and migration macros for working with bitmask flags.
+Laravel integration for [gksh/bitmask](https://github.com/dotgksh/bitmask) - providing Eloquent casting, query scopes, validation, Blade directives, and migration macros for working with bitmask flags.
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/gksh/transistor.svg?style=flat-square)](https://packagist.org/packages/gksh/transistor)
-[![PHP Version](https://img.shields.io/packagist/php-v/gksh/transistor.svg?style=flat-square)](https://packagist.org/packages/gksh/transistor)
-[![License](https://img.shields.io/packagist/l/gksh/transistor.svg?style=flat-square)](https://packagist.org/packages/gksh/transistor)
+[![CI](https://github.com/dotgksh/transistor/actions/workflows/ci.yml/badge.svg)](https://github.com/dotgksh/transistor/actions/workflows/ci.yml)
+[![License](https://img.shields.io/packagist/l/gksh/transistor.svg?style=flat-square)](https://github.com/dotgksh/transistor/blob/main/LICENSE)
 
 ## Installation
 
