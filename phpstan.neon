@@ -1,0 +1,10 @@
+includes:
+    - ./vendor/phpstan/phpstan/conf/bleedingEdge.neon
+
+parameters:
+    level: max
+    paths:
+        - src
+    tmpDir: .phpstan.cache
+    ignoreErrors:
+        - '#Trait .+ is used zero times and is not analysed#'
